@@ -18,7 +18,7 @@ android {
     signingConfigs {
         release {
             // Actionsで復元するkeystoreを使う
-            storeFile file(System.getenv("KEYSTORE_PATH") ?: "upload.keystore")
+            storeFile file(System.getenv("KEYSTORE_PATH") ?: "${rootDir}/upload.keystore")
             storePassword System.getenv("KEYSTORE_PASSWORD")
             keyAlias System.getenv("KEY_ALIAS")
             keyPassword System.getenv("KEY_PASSWORD")
