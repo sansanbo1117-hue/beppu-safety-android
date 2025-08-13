@@ -41,7 +41,7 @@ jobs:
 
       - name: Build AAB (bundleRelease)
         env:
-          KEYSTORE_PATH: upload.keystore
+          KEYSTORE_PATH: ${{ github.workspace }}/upload.keystore
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
