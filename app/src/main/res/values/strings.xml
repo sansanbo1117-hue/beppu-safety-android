@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">外勤安全サポート</string>
+    <string name="send_location">現在地を送信</string>
+</resources>
