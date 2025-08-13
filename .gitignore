@@ -32,3 +32,8 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Android signing (do not commit)
+*.keystore
+*.pem
+*.b64
