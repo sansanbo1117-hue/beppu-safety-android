@@ -3,7 +3,6 @@
 
     <application
         android:label="外勤安全サポート"
-        android:icon="@mipmap/ic_launcher"
         android:allowBackup="true"
         android:supportsRtl="true">
 
