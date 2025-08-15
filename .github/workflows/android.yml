@@ -41,12 +41,13 @@ jobs:
 
       - name: Build AAB (bundleRelease)
         env:
-          KEYSTORE_PATH: ${{ github.workspace }}/upload.keystore
+          KEYSTORE_PATH: upload.keystore
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          ./gradlew clean bundleRelease
+          ./gradlew --version
+          ./gradlew clean bundleRelease --stacktrace --info --no-daemon
 
       - name: Build APK (assembleRelease)
         env:
@@ -55,7 +56,9 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          ./gradlew clean assembleRelease
+          # assembleRelease が無い/見つからない場合にも備えた保険
+          ./gradlew tasks --all | sed -n '1,200p'
+          ./gradlew assembleRelease --stacktrace --info --no-daemon || ./gradlew :app:assembleRelease --stacktrace --info --no-daemon
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
