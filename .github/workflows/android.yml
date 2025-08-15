@@ -48,6 +48,21 @@ jobs:
         run: |
           ./gradlew clean bundleRelease
 
+      - name: Build APK (assembleRelease)
+        env:
+          KEYSTORE_PATH: upload.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          ./gradlew clean assembleRelease
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: app/build/outputs/apk/release/app-release.apk
+
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
